@@ -1,0 +1,52 @@
+# adicionar carro ao estoque
+def adicionar_carro(estoque, marca, modelo):
+    if marca in estoque:
+        estoque[marca].append(modelo)
+    else:
+        estoque[marca] = [modelo]
+
+# visualizar o estoque de carros
+def visualizar_estoque(estoque):
+    print("Estoque atual:")
+    for marca, modelos in estoque.items():
+        print(f"{marca}: {', '.join(modelos)}")
+
+# remover um carro do estoque
+def remover_carro(estoque, marca, modelo):
+    if marca in estoque and modelo in estoque[marca]:
+        estoque[marca].remove(modelo)
+        print(f"Carro '{modelo}' da marca '{marca}' removido do estoque.")
+    else:
+        print("Carro não encontrado no estoque.")
+
+# principal
+def main():
+    estoque = {}  
+
+    while True:
+        print("\nMenu:")
+        print("1. Adicionar carro")
+        print("2. Visualizar estoque")
+        print("3. Remover carro")
+        print("4. Sair")
+
+        opcao = input("Escolha uma opção: ")
+
+        if opcao == '1':
+            marca = input("Marca do carro: ").capitalize()
+            modelo = input("Modelo do carro: ").capitalize()
+            adicionar_carro(estoque, marca, modelo)
+        elif opcao == '2':
+            visualizar_estoque(estoque)
+        elif opcao == '3':
+            marca = input("Marca do carro a ser removido: ").capitalize()
+            modelo = input("Modelo do carro a ser removido: ").capitalize()
+            remover_carro(estoque, marca, modelo)
+        elif opcao == '4':
+            print("Saindo do programa...")
+            break
+        else:
+            print("Opção inválida. Tente novamente.")
+
+if __name__ == "__main__":
+    main()
